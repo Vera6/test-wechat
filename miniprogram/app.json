@@ -9,7 +9,7 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTitleText": "6KiesForever",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
@@ -20,20 +20,20 @@
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "selectedIconPath": "pages/images/indexSelect.png",
-        "iconPath": "pages/images/index.png"
+        "selectedIconPath": "images/indexSelect.png",
+        "iconPath": "images/index.png"
       },
       {
         "pagePath": "pages/music/music",
         "text": "歌单",
-        "selectedIconPath": "pages/images/musicSelect.png",
-        "iconPath": "pages/images/music.png"
+        "selectedIconPath": "images/musicSelect.png",
+        "iconPath": "images/music.png"
       },
       {
         "pagePath": "pages/my/my",
         "text": "我的",
-        "selectedIconPath": "pages/images/mySelect.png",
-        "iconPath": "pages/images/my.png"
+        "selectedIconPath": "images/mySelect.png",
+        "iconPath": "images/my.png"
       }
     ]
   }
