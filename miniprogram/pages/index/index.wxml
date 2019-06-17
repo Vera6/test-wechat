@@ -3,14 +3,19 @@
 
   <!-- 用户 openid -->
   <view class="userinfo">
+    <!-- open-type: 微信开放能力
+      bindgetuserinfo: 用户点击该按钮时，会返回获取到的用户信息，
+      回调的detail数据与wx.getUserInfo返回的一致，open-type="getUserInfo"时有效
+    -->
     <button 
       open-type="getUserInfo" 
       bindgetuserinfo="onGetUserInfo"
       class="userinfo-avatar"
       style="background-image: url({{avatarUrl}})"
     ></button>
+    <!-- bindtap为点击事件 -->
     <view>
-      <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid号</button>
+      <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button>
     </view>
   </view>
 
@@ -19,9 +24,6 @@
   <view class="uploader">
     <view class="uploader-text" bindtap="doUpload">
       <text>上传图片</text>
-    </view>
-    <view class="uploader-container" wx:if="{{imgUrl}}">
-      <image class="uploader-image" src="{{imgUrl}}" mode="aspectFit" bindtap="previewImg"></image>
     </view>
   </view>
 

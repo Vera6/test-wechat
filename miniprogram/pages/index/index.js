@@ -25,6 +25,8 @@ Page({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {
+              console.log('getUserInfo---avatarUrl', res.userInfo.avatarUrl)
+              console.log('getUserInfo---userInfo', res.userInfo)
               this.setData({
                 avatarUrl: res.userInfo.avatarUrl,
                 userInfo: res.userInfo
@@ -37,6 +39,8 @@ Page({
   },
 
   onGetUserInfo: function(e) {
+    console.log('onGetUserInfo---avatarUrl', e.detail.userInfo.avatarUrl)
+    console.log('onGetUserInfo---userInfo', e.detail.userInfo)
     if (!this.logged && e.detail.userInfo) {
       this.setData({
         logged: true,
@@ -49,8 +53,8 @@ Page({
   onGetOpenid: function() {
     // 调用云函数
     wx.cloud.callFunction({
-      name: 'login',
-      data: {},
+      name: 'login', // 云函数名
+      data: {}, // 传递给云函数的参数
       success: res => {
         console.log('[云函数] [login] user openid: ', res.result.openid)
         app.globalData.openid = res.result.openid
@@ -71,15 +75,15 @@ Page({
   doUpload: function () {
     // 选择图片
     wx.chooseImage({
-      count: 1,
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
+      count: 1, // 最多可以选择的图片张数
+      sizeType: ['compressed'], // 所选的图片的尺寸为压缩图
+      sourceType: ['album', 'camera'], // 选择图片的来源 [从相册选图, 使用相机]
       success: function (res) {
-
+        console.log('success---res', res)
         wx.showLoading({
           title: '上传中',
         })
-
+        // tempFilePath可以作为img标签的src属性显示图片
         const filePath = res.tempFilePaths[0]
         
         // 上传图片

@@ -12,12 +12,12 @@
       <text class="request-text">云文件路径：{{cloudPath}}</text>
     </view>
     <view class="list-item">
+      <!-- aspectFit缩放模式，保持纵横比缩放图片，使图片的长边能完全显示出来。也就是说，可以完整地将图片显示出来。-->    
       <image class="image1" src="{{imagePath}}" mode="aspectFit"></image>
     </view>
   </view>
 
   <view class="guide">
-    <!-- <image class="image1" src="{{imagePath}}" mode="aspectFit"></image> -->
     <text class="headline">云开发控制台中管理文件</text>
     <text class="p">1. 打开云开发控制台</text>
     <image class="image1" src="../../images/console-entrance.png" mode="aspectFit"></image>

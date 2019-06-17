@@ -8,6 +8,8 @@ Page({
 
   },
 
+  // 在page页面中定义的生命周期方法onLoad,onReady,onShow,onHide,onUnload
+
   /**
    * 生命周期函数--监听页面加载
    */
