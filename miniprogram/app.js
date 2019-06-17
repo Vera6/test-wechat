@@ -4,10 +4,12 @@ App({
   // onLaunch监听小程序初始化，当小程序初始化完成时，会触发onLaunch（全局只触发一次）
   onLaunch: function (options) {
 
-    /** options是一个参数对象， 里面包含了三个参数 ， path,query和scene ，
+    /** 
+     * options是一个参数对象， 里面包含了三个参数 ， path,query和scene ，
      * path是打开小程序的路径，
      * query是打开小程序页面url的参数，
-     * scene是打开小程序的场景值 */
+     * scene是打开小程序的场景值
+    **/
     console.log("app.js ---onLaunch---", options)
     
     if (!wx.cloud) {
