@@ -3,7 +3,8 @@
     "pages/welcome/welcome",    
     "pages/index/index",
     "pages/my/my",
-    "pages/music/music"
+    "pages/music/music",
+    "pages/index/index-detail/index-detail"
   ],
   "window": {
     "navigationBarTitleText": "Sechs Kies",
