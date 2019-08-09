@@ -19,9 +19,9 @@ Page({
 
   onPostTap: function (event) {
     var postId = event.currentTarget.dataset.postid;
-    // console.log("on index id is" + postId);
+    // console.log("on post id is" + postId);
     wx.navigateTo({
-      url: "index-detail/index-detail?id=" + postId
+      url: "post-detail/post-detail?id=" + postId
     })
   },
 
@@ -31,7 +31,7 @@ Page({
     // target这里指的是image，而currentTarget指的是swiper
     var postId = event.target.dataset.postid;
     wx.navigateTo({
-      url: "index-detail/index-detail?id=" + postId
+      url: "post-detail/post-detail?id=" + postId
     })
   }
 })
