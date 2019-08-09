@@ -1,13 +1,38 @@
 {
   "pages": [
+    "pages/welcome/welcome",    
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/my/my",
+    "pages/music/music"
   ],
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarTitleText": "Sechs Kies",
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#f4e33d"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#2c2c2c",
+    "selectedColor": "#f4e33d",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "selectedIconPath": "images/indexSelect.png",
+        "iconPath": "images/index.png"
+      },
+      {
+        "pagePath": "pages/music/music",
+        "text": "歌单",
+        "selectedIconPath": "images/musicSelect.png",
+        "iconPath": "images/music.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "selectedIconPath": "images/mySelect.png",
+        "iconPath": "images/my.png"
+      }
+    ]
+  }
 }

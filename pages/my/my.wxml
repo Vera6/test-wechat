@@ -1,0 +1,22 @@
+<!--index.wxml-->
+<view class="container">
+
+  <!-- 用户 openid -->
+  <view class="userinfo">
+    <!-- 
+      open-type: 微信开放能力
+      bindgetuserinfo: 用户点击该按钮时，会返回获取到的用户信息，
+      回调的detail数据与wx.getUserInfo返回的一致，open-type="getUserInfo"时有效
+    -->
+    <button 
+      open-type="getUserInfo" 
+      bindgetuserinfo="onGetUserInfo"
+      class="userinfo-avatar"
+      style="background-image: url({{avatarUrl}})"
+    ></button>
+    <view>
+      <text class="userinfo-nickname">{{nickName}}</text>
+    </view>
+  </view>
+
+</view>
