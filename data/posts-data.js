@@ -15,7 +15,7 @@ var local_database = [
         music: {
           url: "http://music.163.com/song/media/outer/url?id=5335325.mp3",
             title: "满醉 in Melody",
-            coverImg: "/images/index/1.jpg"
+            coverImg: "/images/index/2.jpg"
         }
     },
     {
