@@ -5,12 +5,12 @@
 		<swiper-item>
 			<image id="7" src="/images/index/1.jpg" data-postId="3"></image>
 		</swiper-item>
-		<swiper-item>
+		<!-- <swiper-item>
 			<image src="/images/index/1.jpg" data-postId="4"></image>
 		</swiper-item>
 		<swiper-item>
 			<image src="/images/index/1.jpg" data-postId="5"></image>
-		</swiper-item>
+		</swiper-item> -->
 	</swiper>
 	<block wx:for="{{postList}}" wx:for-item="item" wx:for-index="idx">
 		<!--//template-->

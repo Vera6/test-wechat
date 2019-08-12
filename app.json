@@ -1,9 +1,10 @@
 {
   "pages": [
-    "pages/welcome/welcome",    
+    "pages/main/main", 
     "pages/index/index",
     "pages/my/my",
     "pages/music/music",
+    "pages/welcome/welcome",
     "pages/index/index-detail/index-detail"
   ],
   "window": {
@@ -17,8 +18,14 @@
     "selectedColor": "#f4e33d",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/main/main",
         "text": "首页",
+        "selectedIconPath": "images/indexSelect.png",
+        "iconPath": "images/index.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "练习",
         "selectedIconPath": "images/indexSelect.png",
         "iconPath": "images/index.png"
       },
