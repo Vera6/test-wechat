@@ -3,7 +3,7 @@
 <view>
 	<swiper catchtap="onSwiperTap" vertical="{{false}}" indicator-dots="true" autoplay="true" interval="2000" circular="true">
 		<swiper-item>
-			<image id="7" src="/images/index/1.jpg" data-postId="3"></image>
+			<image id="7" src="/images/index/1.jpg" data-postId="0"></image>
 		</swiper-item>
 		<!-- <swiper-item>
 			<image src="/images/index/1.jpg" data-postId="4"></image>
@@ -12,7 +12,8 @@
 			<image src="/images/index/1.jpg" data-postId="5"></image>
 		</swiper-item> -->
 	</swiper>
-	<block wx:for="{{postList}}" wx:for-item="item" wx:for-index="idx">
+		<!--//template-->
+	<block wx:for="{{postList}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
 		<!--//template-->
 		<view catchtap="onPostTap" data-postId="{{item.postId}}">
 			<template is="postItem" data="{{...item}}"/>

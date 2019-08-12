@@ -1,14 +1,15 @@
 {
   "pages": [
-    "pages/main/main", 
+    "pages/main/main",
     "pages/index/index",
     "pages/my/my",
     "pages/music/music",
     "pages/welcome/welcome",
-    "pages/index/index-detail/index-detail"
+    "pages/index/index-detail/index-detail",
+    "pages/main/main-detail/main-detail"
   ],
   "window": {
-    "navigationBarTitleText": "Sechs Kies",
+    "navigationBarTitleText": "은지원",
     "navigationBarTextStyle": "black",
     "navigationBarBackgroundColor": "#f4e33d"
   },

@@ -1,2 +1,31 @@
-<!--pages/main/main.wxml-->
-<text>Welcome to 1kyne</text>
+<import src="main-item/main-item.wxml" />
+
+<view>
+  <swiper
+    catchtap="onSwiperTap"
+    vertical="{{false}}"
+    indicator-dots="true"
+    autoplay="true"
+    interval="2000"
+    circular="true">
+		<swiper-item>
+			<image id="7" src="/images/index/1.jpg" data-postId="0"></image>
+		</swiper-item>
+		<!-- <swiper-item>
+			<image src="/images/index/1.jpg" data-postId="4"></image>
+		</swiper-item>
+		<swiper-item>
+			<image src="/images/index/1.jpg" data-postId="5"></image>
+		</swiper-item> -->
+	</swiper>
+
+  <block 
+    wx:for="{{mainList}}" 
+    wx:for-item="item" 
+    wx:for-index="idx"
+    wx:key="idx">
+		<view catchtap="onMainTap" data-postId="{{item.postId}}">
+			<template is="mainItem" data="{{...item}}"/>
+		</view>
+	</block>
+</view>

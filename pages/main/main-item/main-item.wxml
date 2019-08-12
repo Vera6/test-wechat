@@ -1,0 +1,17 @@
+<template name="mainItem">
+	<view class="main-container">
+		<view class="main-author-date">
+			<image class="main-author" src="{{avatar}}"></image>
+			<text class="main-date">{{date}}</text>
+		</view>
+		<text class="main-title">{{title}}</text>
+		<image class="main-image" src="{{imgSrc}}"></image>
+		<text class="main-content">{{content}}</text>
+		<view class="main-like">
+			<image class="main-like-image" src="/images/icon/chat.png"></image>
+			<text class="main-like-font">{{collection}}</text>
+			<image class="main-like-image" src="/images/icon/view.png"></image>
+			<text class="main-like-font">{{reading}}</text>
+		</view>
+	</view>
+</template>
