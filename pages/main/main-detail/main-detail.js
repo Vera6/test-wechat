@@ -35,6 +35,7 @@ Page({
           isPlayingMusic: true
       })
     }
+    this.setMusicMonitor()
   },
 
   // 收藏
@@ -100,6 +101,43 @@ Page({
       app.globalData.g_currentMusicPostId = this.data.currentPostId
       app.globalData.g_isPlayingMusic = true
     }
+  },
+  setMusicMonitor() {
+    //点击播放图标和总控开关都会触发这个函数
+    const self = this
+    wx.onBackgroundAudioPlay(function (event) {
+      var pages = getCurrentPages()
+      var currentPage = pages[pages.length - 1]
+      if (currentPage.data.currentPostId === self.data.currentPostId) {
+        // 打开多个post-detail页面后，每个页面不会关闭，只会隐藏。通过页面栈拿到到
+        // 当前页面的postid，只处理当前页面的音乐播放。
+        if (app.globalData.g_currentMusicPostId == self.data.currentPostId) {
+          // 播放当前页面音乐才改变图标
+          self.setData({
+            isPlayingMusic: true
+          })
+        }
+      }
+      app.globalData.g_isPlayingMusic = true
+    })
+    wx.onBackgroundAudioPause(function () {
+      var pages = getCurrentPages()
+      var currentPage = pages[pages.length - 1]
+      if (currentPage.data.currentPostId === self.data.currentPostId) {
+        if (app.globalData.g_currentMusicPostId == self.data.currentPostId) {
+          self.setData({
+            isPlayingMusic: false
+          })
+        }
+      }
+      app.globalData.g_isPlayingMusic = false
+    })
+    wx.onBackgroundAudioStop(function () {
+      self.setData({
+        isPlayingMusic: false
+      })
+      app.globalData.g_isPlayingMusic = false
+    })
   },
 
   // 用户点击右上角分享
