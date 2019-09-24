@@ -1,12 +1,37 @@
-# 云开发 quickstart
+# myvue-test
 
-这是云开发的快速启动指引，其中演示了如何上手使用云开发的三大基础能力：
+> A Mpvue project
 
-- 数据库：一个既可在小程序前端操作，也能在云函数中读写的 JSON 文档型数据库
-- 文件存储：在小程序前端直接上传/下载云端文件，在云开发控制台可视化管理
-- 云函数：在云端运行的代码，微信私有协议天然鉴权，开发者只需编写业务逻辑代码
+## Build Setup
 
-## 参考文档
+``` bash
+# 初始化项目
+vue init mpvue/mpvue-quickstart myproject
+cd myproject
 
-- [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
+# 安装依赖
+yarn
 
+# 开发时构建
+npm dev
+
+# 打包构建
+npm build
+
+# 指定平台的开发时构建(微信、百度、头条、支付宝)
+npm dev:wx
+npm dev:swan
+npm dev:tt
+npm dev:my
+
+# 指定平台的打包构建
+npm build:wx
+npm build:swan
+npm build:tt
+npm build:my
+
+# 生成 bundle 分析报告
+npm run build --report
+```
+
+For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
