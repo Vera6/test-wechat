@@ -3,7 +3,7 @@
       <swiper v-if="imgUrls.length > 0" indidator-dots="imgUrls.length > 1" >
       <block v-for="(item, index) in imgUrls" :key="index" >
         <swiper-item>
-          <image :src="item" mode="scaleToFill"></image>
+          <image :src="item" mode="scaleToFill"/>
         </swiper-item>
       </block>
     </swiper>

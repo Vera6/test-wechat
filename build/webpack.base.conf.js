@@ -61,7 +61,7 @@ let baseWebpackConfig = {
       },
       {
         test: /\.js$/,
-        include: [resolve('src'), resolve('test')],
+        include: [resolve('src'), resolve('test'), resolve('static/vant')],
         use: [
           'babel-loader',
           {

@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/main",
     "pages/logs/main",
-    "pages/counter/main"
+    "pages/counter/main",
+    "pages/textarea/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -26,6 +27,11 @@
       "pagePath": "pages/logs/main",
       "iconPath": "static/tabs/orders.png",
       "selectedIconPath": "static/tabs/orders-active.png"
+    }, {
+      "text": "文本框",
+      "pagePath": "pages/textarea/main",
+      "iconPath": "static/tabs/orders.png",
+      "selectedIconPath": "static/tabs/orders-active.png"
     }],
 
     "items": [{
@@ -36,6 +42,11 @@
     }, {
       "name": "订单",
       "pagePath": "pages/logs/main",
+      "icon": "static/tabs/orders.png",
+      "activeIcon": "static/tabs/orders-active.png"
+    }, {
+      "name": "文本框",
+      "pagePath": "pages/textarea/main",
       "icon": "static/tabs/orders.png",
       "activeIcon": "static/tabs/orders-active.png"
     }],
