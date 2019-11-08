@@ -72,7 +72,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
 .userinfo {
   display: flex;
   flex-direction: column;
