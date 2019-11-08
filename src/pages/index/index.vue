@@ -1,35 +1,18 @@
 <template>
-  <div @click="clickHandle">
-
-    <div class="userinfo" @click="bindViewTap">
-      <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
-      <img class="userinfo-avatar" src="/static/images/user.png" background-size="cover" />
-
-      <div class="userinfo-nickname">
-        <card :text="userInfo.nickName"></card>
-      </div>
+  <div class="userinfo">
+    <img class="userinfo-avatar" v-if="avatarUrl" :src="avatarUrl" background-size="cover" />
+    <button
+      v-else
+      class="userinfo-avatar"
+      open-type="getUserInfo"
+      @getuserinfo="onGotUserInfo" />
+    <div class="userinfo-nickname">
+      <card :text="nickName"></card>
     </div>
-
-    <div class="usermotto">
-      <div class="user-motto">
-        <card :text="motto"></card>
-      </div>
-    </div>
-
-    <form class="form-container">
-      <input type="text" class="form-control" :value="motto" placeholder="v-model" />
-      <input type="text" class="form-control" v-model="motto" placeholder="v-model" />
-      <input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />
-    </form>
-
-    <a href="/pages/counter/main" class="counter">去往Vuex示例页面</a>
-
-    <div class="all">
-        <div class="left">
-        </div>
-        <div class="right">
-        </div>
-    </div>
+    <button
+      type="primary"
+      open-type="getPhoneNumber"
+      @getphonenumber="getPhoneNumber">点击登入</button>
   </div>
 </template>
 
@@ -39,11 +22,8 @@ import card from '@/components/card'
 export default {
   data () {
     return {
-      motto: 'Hello miniprograme',
-      userInfo: {
-        nickName: 'mpvue',
-        avatarUrl: 'http://mpvue.com/assets/logo.png'
-      }
+      nickName: '',
+      avatarUrl: ''
     }
   },
 
@@ -52,18 +32,45 @@ export default {
   },
 
   methods: {
-    bindViewTap () {
-      const url = '../logs/main'
-      if (mpvuePlatform === 'wx') {
-        mpvue.switchTab({ url })
-      } else {
-        mpvue.navigateTo({ url })
+    onGotUserInfo (e) {
+      const result = e.mp.detail
+      console.log(result)
+      const { errMsg, userInfo } = result
+      // 如果没有获取到，则停留在当前页面，让用户自己返回上一级
+      if (!userInfo) {
+        console.log(errMsg)
+        return
       }
+      // 如果授权成功了，则触发登录
+      wx.login({
+        success: (res) => {
+          // 登录成功再获取用户信息
+          console.log('res', res)
+          this.nickName = result.userInfo.nickName
+          this.avatarUrl = result.userInfo.avatarUrl
+      },
+        fail: () => {
+        }
+      })
     },
-    clickHandle (ev) {
-      console.log('clickHandle:', ev)
-      // throw {message: 'custom test'}
-    }
+    getPhoneNumber(e) {
+      const { encryptedData, iv } = e.mp.detail;
+      console.log("encryptedData: ", e);
+      if (!encryptedData) {
+        return
+      }
+      wx.showLoading({
+        title: "登录中"
+      });
+      wx.login({
+        success: (res) => {
+          // 登录成功再获取用户信息
+          console.log('res', encryptedData)
+      },
+        fail: () => {
+        }
+      })
+    },
   },
 
   created () {
@@ -85,6 +92,8 @@ export default {
   height: 128rpx;
   margin: 20rpx;
   border-radius: 50%;
+  background: url('http://static-fe.anlink.tech/circle/confirmSuccess.png') no-repeat;
+  background-size: 100% 100%;
 }
 
 .userinfo-nickname {
