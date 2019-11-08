@@ -1,6 +1,10 @@
 <template>
   <div class="userinfo">
-    <img class="userinfo-avatar" v-if="avatarUrl" :src="avatarUrl" background-size="cover" />
+    <img
+      class="userinfo-avatar"
+      v-if="avatarUrl"
+      :src="avatarUrl"
+      background-size="cover" />
     <button
       v-else
       class="userinfo-avatar"
@@ -9,10 +13,10 @@
     <div class="userinfo-nickname">
       <card :text="nickName"></card>
     </div>
-    <button
+    <!-- <button
       type="primary"
       open-type="getPhoneNumber"
-      @getphonenumber="getPhoneNumber">点击登入</button>
+      @getphonenumber="getPhoneNumber">点击登入</button> -->
   </div>
 </template>
 
@@ -48,6 +52,8 @@ export default {
           console.log('res', res)
           this.nickName = result.userInfo.nickName
           this.avatarUrl = result.userInfo.avatarUrl
+          // wx.setStorageSync('nickName', this.nickName)
+          // wx.setStorageSync('avatarUrl', this.avatarUrl)
       },
         fail: () => {
         }
@@ -75,6 +81,8 @@ export default {
 
   created () {
     // let app = getApp()
+    // this.nickName = wx.getStorageSync('nickName')
+    // this.avatarUrl = wx.getStorageSync('avatarUrl')
   }
 }
 </script>
