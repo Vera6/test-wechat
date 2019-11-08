@@ -1,13 +1,20 @@
 <template>
   <div @click="onPage">
-    Welcome
+    <van-button>Welcome</van-button>
   </div>
 </template>
 
 <script>
+import { get } from '@/utils/request'
+
 export default {
+  created() {
+    get('https://www.baidu.com').then((res) => {
+      console.log('res', res)
+    })
+  },
   methods: {
-    onPage () {
+    onPage() {
       this.$router.push('/pages/index/main')
     }
   }

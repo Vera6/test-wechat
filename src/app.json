@@ -9,6 +9,6 @@
     "navigationBarTextStyle": "black"
   },
   "usingComponents": {
-    "van-button": "vant-weapp/dist/button/index"
+    "van-button": "static/vant/button/index"
   }
 }
