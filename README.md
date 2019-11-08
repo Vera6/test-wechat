@@ -1,4 +1,4 @@
-# myvue-test
+# my-project
 
 > A Mpvue project
 
