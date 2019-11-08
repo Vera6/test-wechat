@@ -20,7 +20,7 @@
   </div>
 </template>
 
-<script>
+<script> 
 import card from '@/components/card'
 
 export default {
