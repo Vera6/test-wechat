@@ -1,5 +1,5 @@
 import { get, post } from '../utils/request'
-import { APP_ID, APP_SECRET } from '../utils/const'
+import { APP_ID, APP_SECRET } from '../utils/constant'
 
 const API_URL = 'https://test.youbaobao.xyz:18081'
 
