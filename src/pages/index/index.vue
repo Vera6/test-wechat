@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { getSetting, getUserInfo, showLoading } from '@/api/wechat'
+import { getSetting, getUserInfo } from '@/api/wechat'
 
 import Auth from '../../components/base/auth'
 
@@ -31,7 +31,7 @@ export default {
         'userInfo',
         () => {
           this.isAuth = true
-          showLoading('正在加载')
+          // showLoading('正在加载')
           this.getUserInfo()
         },
         () => {
