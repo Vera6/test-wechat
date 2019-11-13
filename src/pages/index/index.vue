@@ -7,7 +7,8 @@
 
 <script>
 import { getSetting, getUserInfo } from '@/api/wechat'
-
+import api from '@/api'
+// import { getHomeData } from '@/api'
 import Auth from '../../components/base/auth'
 
 export default {
@@ -21,6 +22,7 @@ export default {
   },
   mounted() {
     this.init()
+    api.getHomeData()
   },
   methods: {
     onPage() {

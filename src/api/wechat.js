@@ -1,4 +1,4 @@
-import { getOpenId } from './index'
+import api from './index'
 
 export function getSetting(auth, onSuccess, onFail) {
   mpvue.getSetting({
@@ -46,7 +46,7 @@ export function getUserOpenId(callback) {
     success(res) {
       if (res.code) {
         const { code } = res
-        getOpenId(code).then(response => {
+        api.getOpenId(code).then(response => {
           const { data: { data: { openid } } } = response
           setStorageSync('openId', openid)
           callback && callback(openid)

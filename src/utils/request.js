@@ -1,7 +1,13 @@
+import Fly from 'flyio/dist/npm/wx'
+const fly = new Fly()
+
+const API_URL = {
+  dev: 'https://test.youbaobao.xyz:18081'
+}
+
 function createFly() {
   if (mpvuePlatform === 'wx') {
-    const Fly = require('flyio/dist/npm/wx')
-    return new Fly()
+    return fly
   }
   return null
 }
@@ -10,11 +16,16 @@ function handleError(err) {
   console.log(err)
 }
 
+function getUrl(url) {
+  return API_URL.dev + url
+}
+
 export function get(url, params = {}, showError = true) {
   const fly = createFly()
+  const url1 = getUrl(url)
   if (fly) {
     return new Promise((resolve, reject) => {
-      fly.get(url, params).then(response => {
+      fly.get(url1, params).then(response => {
         console.log(response)
         if (response && response.data && response.data.error_code === 0) {
           resolve(response)
@@ -38,9 +49,10 @@ export function get(url, params = {}, showError = true) {
 
 export function post(url, params = {}, showError = true) {
   const fly = createFly()
+  const url2 = getUrl(url)
   if (fly) {
     return new Promise((resolve, reject) => {
-      fly.post(url, params).then(response => {
+      fly.post(url2, params).then(response => {
         console.log(response)
         if (response && response.data && response.data.error_code === 0) {
           resolve(response)
@@ -61,3 +73,12 @@ export function post(url, params = {}, showError = true) {
     })
   }
 }
+
+fly.interceptors.request.use((request) => {
+  // 给所有请求添加自定义header
+  request.headers = {
+    'X-Tag': 'flyio',
+    'content-type': 'application/json'
+  }
+  return request
+})
