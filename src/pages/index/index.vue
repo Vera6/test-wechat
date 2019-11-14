@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     onPage() {
-      this.$router.push('/pages/index/main')
+      this.$router.push('/pages/pay/main')
     },
     getSetting() {
       getSetting(

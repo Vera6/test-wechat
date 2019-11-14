@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/index/main"
+    "pages/index/main",
+    "pages/pay/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -9,6 +10,6 @@
     "navigationBarTextStyle": "black"
   },
   "usingComponents": {
-    "van-button": "static/vant/button/index"
+    "van-button": "vant-weapp/dist/button/index"
   }
 }
