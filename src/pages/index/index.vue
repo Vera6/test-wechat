@@ -1,6 +1,8 @@
 <template>
   <div>
-    <van-button v-if="isAuth" @click="onPage">Welcome</van-button>
+    <div v-if="isAuth">
+      <van-button @click="onPage">Welcome</van-button>
+    </div>
     <Auth v-else @getUserInfo="init"/>
   </div>
 </template>
