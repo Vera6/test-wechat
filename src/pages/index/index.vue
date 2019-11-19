@@ -2,6 +2,7 @@
   <div>
     <div v-if="isAuth">
       <van-button @click="onPage">Welcome</van-button>
+      <!-- <image-container :width="594" :height="315" mode="widthFix" src=""></image-container> -->
     </div>
     <Auth v-else @getUserInfo="init"/>
   </div>
@@ -9,9 +10,10 @@
 
 <script>
 import { getSetting, getUserInfo } from '@/api/wechat'
-import api from '@/api'
+// import api from '@/api'
 // import { getHomeData } from '@/api'
 import Auth from '../../components/base/auth'
+import ImageContainer from '../../components/base/ImageContainer'
 
 export default {
   data() {
@@ -20,11 +22,12 @@ export default {
     }
   },
   components: {
-    Auth
+    Auth,
+    ImageContainer
   },
   mounted() {
     this.init()
-    api.getHomeData()
+    // api.getHomeData()
   },
   methods: {
     onPage() {
