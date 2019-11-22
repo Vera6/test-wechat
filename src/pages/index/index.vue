@@ -1,6 +1,11 @@
 <template>
   <div>
     <div v-if="isAuth">
+      <div 
+        class="userinfo-avatar"
+        :style="{ backgroundImage: 'url(' + avatarUrl + ')' }"
+      />
+      <div class="userinfo-nickname">{{nickName}}</div>
       <van-button @click="onPage">Welcome</van-button>
       <!-- <image-container :width="594" :height="315" mode="widthFix" src=""></image-container> -->
     </div>
@@ -18,7 +23,9 @@ import ImageContainer from '../../components/base/ImageContainer'
 export default {
   data() {
     return {
-      isAuth: true
+      isAuth: true,
+      avatarUrl: '',
+      nickName: ''
     }
   },
   components: {
@@ -28,6 +35,12 @@ export default {
   mounted() {
     this.init()
     // api.getHomeData()
+  },
+  computed: {
+    avatarUrlStyle() {
+      return `background: url(${this.avatarUrl}) no-repeat`
+      // return 'backgroundImage: url(' + this.avatarUrl + ')'
+    }
   },
   methods: {
     onPage() {
@@ -48,8 +61,8 @@ export default {
     },
     getUserInfo() {
       getUserInfo(
-        (userInfo) => {
-          console.log(userInfo)
+        (res) => {
+          console.log(res)
           // setStorageSync('userInfo', userInfo)
           // const openId = getStorageSync('openId')
           // if (!openId || openId.length === 0) {
@@ -57,6 +70,9 @@ export default {
           // } else {
           //   onOpenIdComplete(openId, userInfo)
           // }
+          this.avatarUrl = res.avatarUrl
+          this.nickName = res.nickName
+          console.log('this.avatarUrl', this.avatarUrl)
         },
         () => {
           console.log('failed...') // 获取用户信息，抛出异常
@@ -71,5 +87,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.userinfo-avatar {
+  width: 50px;
+  height: 50px;
+  margin: 20px;
+  border-radius: 50%;
+  background-size: cover;
+}
 
+.userinfo-avatar:after {
+  border: none;
+}
+
+.userinfo-nickname {
+  font-size: 16px;
+  color: #007aff;
+  background-color: white;
+  background-size: cover;
+}
+
+.userinfo-nickname::after {
+  border: none;
+}
 </style>
