@@ -1,144 +1,125 @@
 <template>
-  <div class="userinfo">
-    <img
-      class="userinfo-avatar"
-      v-if="avatarUrl"
-      :src="avatarUrl"
-      background-size="cover" />
-    <button
-      v-else
-      class="userinfo-avatar"
-      open-type="getUserInfo"
-      @getuserinfo="onGotUserInfo" />
-    <div class="userinfo-nickname">
-      <card :text="nickName"></card>
+  <div class="index-box">
+    <div v-if="isAuth">
+      <div 
+        class="userinfo-avatar"
+        :style="{ backgroundImage: 'url(' + avatarUrl + ')' }"/>
+      <div class="userinfo-nickname">{{nickName}}</div>
+      <van-button class="btn" type="primary" size="large" @click="onPage">Welcome</van-button>
+      <!-- <image-container :width="594" :height="315" mode="widthFix" src=""></image-container> -->
     </div>
-    <!-- <button
-      type="primary"
-      open-type="getPhoneNumber"
-      @getphonenumber="getPhoneNumber">点击登入</button> -->
+    <Auth v-else @getUserInfo="init"/>
   </div>
 </template>
 
-<script> 
-import card from '@/components/card'
+<script>
+import { getSetting, getUserInfo } from '@/api/wechat'
+// import api from '@/api'
+// import { getHomeData } from '@/api'
+import Auth from '../../components/base/auth'
+import ImageContainer from '../../components/base/ImageContainer'
 
 export default {
-  data () {
+  data() {
     return {
-      nickName: '',
-      avatarUrl: ''
+      isAuth: true,
+      avatarUrl: '',
+      nickName: ''
     }
   },
-
   components: {
-    card
+    Auth,
+    ImageContainer
   },
-
+  mounted() {
+    this.init()
+    // api.getHomeData()
+  },
+  computed: {
+    avatarUrlStyle() {
+      return `background: url(${this.avatarUrl}) no-repeat`
+      // return 'backgroundImage: url(' + this.avatarUrl + ')'
+    }
+  },
   methods: {
-    onGotUserInfo (e) {
-      const result = e.mp.detail
-      console.log(result)
-      const { errMsg, userInfo } = result
-      // 如果没有获取到，则停留在当前页面，让用户自己返回上一级
-      if (!userInfo) {
-        console.log(errMsg)
-        return
-      }
-      // 如果授权成功了，则触发登录
-      wx.login({
-        success: (res) => {
-          // 登录成功再获取用户信息
-          console.log('res', res)
-          this.nickName = result.userInfo.nickName
-          this.avatarUrl = result.userInfo.avatarUrl
-          // wx.setStorageSync('nickName', this.nickName)
-          // wx.setStorageSync('avatarUrl', this.avatarUrl)
-      },
-        fail: () => {
-        }
-      })
+    onPage() {
+      this.$router.push('/pages/pay/main')
     },
-    getPhoneNumber(e) {
-      const { encryptedData, iv } = e.mp.detail;
-      console.log("encryptedData: ", e);
-      if (!encryptedData) {
-        return
-      }
-      wx.showLoading({
-        title: "登录中"
-      });
-      wx.login({
-        success: (res) => {
-          // 登录成功再获取用户信息
-          console.log('res', encryptedData)
-      },
-        fail: () => {
+    getSetting() {
+      getSetting(
+        'userInfo',
+        () => {
+          this.isAuth = true
+          // showLoading('正在加载')
+          this.getUserInfo()
+        },
+        () => {
+          this.isAuth = false
         }
-      })
+      )
     },
-  },
-
-  created () {
-    // let app = getApp()
-    // this.nickName = wx.getStorageSync('nickName')
-    // this.avatarUrl = wx.getStorageSync('avatarUrl')
+    getUserInfo() {
+      getUserInfo(
+        (res) => {
+          console.log(res)
+          // setStorageSync('userInfo', userInfo)
+          // const openId = getStorageSync('openId')
+          // if (!openId || openId.length === 0) {
+          //   getUserOpenId(openId => onOpenIdComplete(openId, userInfo))
+          // } else {
+          //   onOpenIdComplete(openId, userInfo)
+          // }
+          this.avatarUrl = res.avatarUrl
+          this.nickName = res.nickName
+          console.log('this.avatarUrl', this.avatarUrl)
+        },
+        () => {
+          console.log('failed...') // 获取用户信息，抛出异常
+        }
+      )
+    },
+    init() {
+      this.getSetting()
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.userinfo-avatar {
+  float: left;
+  width: 50px;
+  height: 50px;
+  margin: 20px;
+  border-radius: 50%;
+  background-size: cover;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-  background: url('http://static-fe.anlink.tech/circle/confirmSuccess.png') no-repeat;
-  background-size: 100% 100%;
+.userinfo-avatar:after {
+  border: none;
 }
 
 .userinfo-nickname {
-  color: #aaa;
+  font-size: 16px;
+  color: #007aff;
+  background-color: white;
+  background-size: cover;
+  padding-top: 35px;
 }
 
-.usermotto {
-  margin-top: 150px;
+.userinfo-nickname::after {
+  border: none;
 }
 
-.form-control {
-  display: block;
-  padding: 0 12px;
-  margin-bottom: 5px;
-  border: 1px solid #ccc;
-}
-.all{
-  width:7.5rem;
-  height:1rem;
-  background-color:blue;
-}
-.all:after{
-  display:block;
-  content:'';
-  clear:both;
-}
-.left{
-  float:left;
-  width:3rem;
-  height:1rem;
-  background-color:red;
-}
+</style>
 
-.right{
-  float:left;
-  width:4.5rem;
-  height:1rem;
-  background-color:green;
+<style lang="scss">
+.index-box {
+  .van-button {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
 }
 </style>
+

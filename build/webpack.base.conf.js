@@ -55,13 +55,22 @@ let baseWebpackConfig = {
   module: {
     rules: [
       {
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        include: [resolve('src'), resolve('test')],
+        options: {
+          formatter: require('eslint-friendly-formatter')
+        }
+      },
+      {
         test: /\.vue$/,
         loader: 'mpvue-loader',
         options: vueLoaderConfig
       },
       {
         test: /\.js$/,
-        include: [resolve('src'), resolve('test'), resolve('static/vant')],
+        include: [resolve('src'), resolve('test')],
         use: [
           'babel-loader',
           {
@@ -134,6 +143,18 @@ if (/^(swan)|(tt)$/.test(PLATFORM)) {
       new CopyWebpackPlugin([{
         from: path.resolve(__dirname, projectConfigMap[PLATFORM]),
         to: path.resolve(config.build.assetsRoot)
+      }])
+    ]
+  })
+}
+
+if (/^wx$/.test(PLATFORM)) {
+  baseWebpackConfig = merge(baseWebpackConfig, {
+    plugins: [
+      new CopyWebpackPlugin([{
+        from: resolve('node_modules/vant-weapp/dist'),
+        to: resolve('dist/wx/vant-weapp/dist'),
+        ignore: ['.*']
       }])
     ]
   })

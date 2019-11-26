@@ -1,65 +1,43 @@
-// https://eslint.org/docs/user-guide/configuring
+// http://eslint.org/docs/user-guide/configuring
 
 module.exports = {
   root: true,
+  parser: 'babel-eslint',
   parserOptions: {
-    parser: 'babel-eslint'
+    sourceType: 'module'
   },
   env: {
-    browser: true,
+    browser: false,
+    node: true,
+    es6: true
   },
-  // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
-  // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
-  extends: ['plugin:vue/recommended', 'airbnb-base'],
-  // extends: 'recommended',
+  // https://github.com/standard/standard/blob/master/docs/RULES-en.md
+  extends: 'standard',
   // required to lint *.vue files
   plugins: [
-    'vue'
+    'html'
   ],
-  // check if imports actually resolve
-  settings: {
-    'import/resolver': {
-      webpack: {
-        config: 'build/webpack.base.conf.js'
-      }
-    }
-  },
   // add your custom rules here
-  rules: {
-    // don't require .vue extension when importing
-    'import/extensions': ['error', 'always', {
-      js: 'never',
-      vue: 'never'
-    }],
-    // disallow reassignment of function parameters
-    // disallow parameter object manipulation except for specific exclusions
-    'no-param-reassign': ['error', {
-      props: true,
-      ignorePropertyModificationsFor: [
-        'state', // for vuex state
-        'acc', // for reduce accumulators
-        'e' // for e.returnvalue
-      ]
-    }],
-    // allow optionalDependencies
-    'import/no-extraneous-dependencies': ['error', {
-      optionalDependencies: ['test/unit/index.js']
-    }],
+  'rules': {
+    // allow paren-less arrow functions
+    'arrow-parens': 0,
+    // allow async-await
+    'generator-star-spacing': 0,
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'semi': 0,
-    'no-console': 0,
-    'no-param-reassign': 0,
-    'radix': 0,
-    'no-multi-assign': 0,
-    'linebreak-style': 0,
-    'vue/order-in-components': 0,
-    'guard-for-in': 0,
-    'no-underscore-dangle': 0,
-    'import/no-unresolved': 0,
-    'no-alert': 0,
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'space-before-function-paren': 'off'
   },
   globals: {
-    $: '$',
-  },
+    App: true,
+    Page: true,
+    wx: true,
+    swan: true,
+    tt: true,
+    my: true,
+    getApp: true,
+    getPage: true,
+    requirePlugin: true,
+    mpvue: true,
+    mpvuePlatform: true
+  }
 }
