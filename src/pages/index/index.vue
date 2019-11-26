@@ -1,12 +1,11 @@
 <template>
-  <div>
+  <div class="index-box">
     <div v-if="isAuth">
       <div 
         class="userinfo-avatar"
-        :style="{ backgroundImage: 'url(' + avatarUrl + ')' }"
-      />
+        :style="{ backgroundImage: 'url(' + avatarUrl + ')' }"/>
       <div class="userinfo-nickname">{{nickName}}</div>
-      <van-button @click="onPage">Welcome</van-button>
+      <van-button class="btn" type="primary" size="large" @click="onPage">Welcome</van-button>
       <!-- <image-container :width="594" :height="315" mode="widthFix" src=""></image-container> -->
     </div>
     <Auth v-else @getUserInfo="init"/>
@@ -88,6 +87,7 @@ export default {
 
 <style lang="scss" scoped>
 .userinfo-avatar {
+  float: left;
   width: 50px;
   height: 50px;
   margin: 20px;
@@ -104,9 +104,22 @@ export default {
   color: #007aff;
   background-color: white;
   background-size: cover;
+  padding-top: 35px;
 }
 
 .userinfo-nickname::after {
   border: none;
 }
+
 </style>
+
+<style lang="scss">
+.index-box {
+  .van-button {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+}
+</style>
+

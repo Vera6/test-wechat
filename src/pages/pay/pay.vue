@@ -10,7 +10,7 @@ export default {
     }
   },
   onLoad: function (options) {
-    this.shareUrl = ''
+    this.shareUrl = 'https://www.baidu.com/'
   },
   onShareAppMessage: function (res) {
     console.log('res', res)
