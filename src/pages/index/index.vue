@@ -14,10 +14,12 @@
 
 <script>
 import { getSetting, getUserInfo } from '@/api/wechat'
+// import { get } from '@/utils/request'
 // import api from '@/api'
 // import { getHomeData } from '@/api'
 import Auth from '../../components/base/auth'
 import ImageContainer from '../../components/base/ImageContainer'
+const common = require('@/utils/xml.js')
 
 export default {
   data() {
@@ -33,6 +35,7 @@ export default {
   },
   mounted() {
     this.init()
+    this.getVersion()
     // api.getHomeData()
   },
   computed: {
@@ -71,7 +74,7 @@ export default {
           // }
           this.avatarUrl = res.avatarUrl
           this.nickName = res.nickName
-          console.log('this.avatarUrl', this.avatarUrl)
+          // console.log('this.avatarUrl', this.avatarUrl)
         },
         () => {
           console.log('failed...') // 获取用户信息，抛出异常
@@ -80,6 +83,15 @@ export default {
     },
     init() {
       this.getSetting()
+    },
+    getVersion() {
+      const jsonObj = '<PolicyInfo id="1"><BaseInfo><AgentCode>111</AgentCode><AgentCode>222</AgentCode><AgentCode>111</AgentCode></BaseInfo></PolicyInfo>'
+      // 解析xml字符串，转换成js对象
+      const resObj = common.xml2Obj(jsonObj)
+      const jsonObj1 = '<Like id="1"><BaseInfo><AgentCode>111</AgentCode><AgentCode>222</AgentCode><AgentCode>111</AgentCode></BaseInfo></Like>'
+      const resObj1 = common.xml2Obj(jsonObj1)
+      console.log('resObj', resObj)
+      console.log('resObj111111', resObj1)
     }
   }
 }
