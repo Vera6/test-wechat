@@ -5,7 +5,7 @@
         class="userinfo-avatar"
         :style="{ backgroundImage: 'url(' + avatarUrl + ')' }"/>
       <div class="userinfo-nickname">{{nickName}}</div>
-      <van-button class="btn" type="primary" size="large" @click="onPage">Welcome</van-button>
+      <van-button class="btn" type="primary" size="large" @click="onPage">Welcome1</van-button>
       <!-- <image-container :width="594" :height="315" mode="widthFix" src=""></image-container> -->
     </div>
     <Auth v-else @getUserInfo="init"/>
@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     onPage() {
-      this.$router.push('/pages/pay/main')
+      this.$router.push('/pages/cropper/main')
     },
     getSetting() {
       getSetting(
